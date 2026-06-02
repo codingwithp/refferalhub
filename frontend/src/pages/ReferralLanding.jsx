@@ -22,7 +22,7 @@ function ReferralLanding() {
     e.preventDefault();
 
     try {
-      await API.post("/api/bookings", {
+      await API.post("/bookings", {
         referralCode: code,
         ...form,
       });
