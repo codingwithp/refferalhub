@@ -1,11 +1,19 @@
 const User = require("../models/User");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
-
+const validator = require("validator");
 // REGISTER
+
 exports.register = async (req, res) => {
   try {
-    const { name, email, phone, password, role } = req.body;
+    const { name, email, phone, password } = req.body;
+
+    // Email validation
+    if (!validator.isEmail(email)) {
+      return res.status(400).json({
+        message: "Please enter a valid email address",
+      });
+    }
 
     const existingUser = await User.findOne({ email });
 
@@ -15,7 +23,7 @@ exports.register = async (req, res) => {
       });
     }
 
-    // Generate referral code
+    
     const referralCode =
       Math.random()
         .toString(36)
@@ -33,7 +41,6 @@ exports.register = async (req, res) => {
       email,
       phone,
       password: hashedPassword,
-      role,
       referralCode,
     });
 
@@ -50,10 +57,39 @@ exports.register = async (req, res) => {
 };
 
 // LOGIN
+// 
 exports.login = async (req, res) => {
   try {
     const { email, password } = req.body;
 
+    // Hardcoded coach login
+    if (
+      email === "referralhub10@gmail.com" &&
+      password === "referral@10"
+    ) {
+      const token = jwt.sign(
+        {
+          id: "coach",
+          role: "coach",
+        },
+        process.env.JWT_SECRET,
+        {
+          expiresIn: "1d",
+        }
+      );
+
+      return res.json({
+        token,
+        user: {
+          name: "Prasanna",
+          email: "referralhub10@gmail.com",
+          phone: "9902581097",
+          role: "coach",
+        },
+      });
+    }
+
+    // Normal client login
     const user = await User.findOne({ email });
 
     if (!user) {
@@ -88,6 +124,7 @@ exports.login = async (req, res) => {
       token,
       user,
     });
+
   } catch (err) {
     res.status(500).json({
       message: err.message,

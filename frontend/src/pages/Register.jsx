@@ -354,7 +354,7 @@ const styles = `
 
 function Register() {
   const navigate = useNavigate();
-  const [form, setForm] = useState({ name: "", email: "", phone: "", password: "", role: "client" });
+  const [form, setForm] = useState({ name: "", email: "", phone: "", password: "" });
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
@@ -448,7 +448,7 @@ function Register() {
               <label className="hl-label">Email Address</label>
               <div className="hl-input-wrap">
                 <span className="hl-input-icon"><MailIcon /></span>
-                <input className="hl-input" name="email" type="email" placeholder="you@example.com" onChange={handleChange} required />
+                <input className="hl-input"  value={form.email} name="email" type="email" placeholder="you@example.com" onChange={handleChange} required />
               </div>
             </div>
 
@@ -461,16 +461,7 @@ function Register() {
                 </div>
               </div>
 
-              <div className="hl-field">
-                <label className="hl-label">Role</label>
-                <div className="hl-input-wrap">
-                  <span className="hl-input-icon"><RoleIcon /></span>
-                  <select className="hl-select" name="role" onChange={handleChange}>
-                    <option value="client">Client</option>
-                    <option value="coach">Coach</option>
-                  </select>
-                </div>
-              </div>
+              
             </div>
 
             <div className="hl-field">

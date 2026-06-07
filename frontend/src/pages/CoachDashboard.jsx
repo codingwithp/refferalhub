@@ -256,54 +256,41 @@ function CoachDashboard() {
             >
               <thead>
                 <tr>
-                  <th className="table-head">
-                    Lead Name
-                  </th>
-
-                  <th className="table-head">
-                    Phone
-                  </th>
-
-                  <th className="table-head">
-                    Email
-                  </th>
-
-                  <th className="table-head">
-                    Referred By
-                  </th>
-
-                  <th className="table-head">
-                    Referral Code
-                  </th>
-
-                  <th className="table-head">
-                    Status
-                  </th>
+                  <th className="table-head">Lead Name</th>
+<th className="table-head">Phone</th>
+<th className="table-head">Email</th>
+<th className="table-head">Goal</th>
+<th className="table-head">Date</th>
+<th className="table-head">Time</th>
+<th className="table-head">Referred By</th>
+<th className="table-head">Status</th>
                 </tr>
               </thead>
 
               <tbody>
                 {referrals.map((item) => (
                   <tr key={item._id}>
-                    <td className="table-cell">
-                      {item.leadName}
-                    </td>
+                    <td className="table-cell">{item.leadName}</td>
+<td className="table-cell">
+  <a
+    href={`tel:${item.leadPhone}`}
+    className="action-btn"
+  >
+    📞 Call
+  </a>
 
-                    <td className="table-cell">
-                      {item.leadPhone}
-                    </td>
+  <a
+    href={`mailto:${item.leadEmail}`}
+    className="action-btn"
+  >
+    ✉ Email
+  </a>
+</td>
 
-                    <td className="table-cell">
-                      {item.leadEmail}
-                    </td>
-
-                    <td className="table-cell">
-                      {item.clientName}
-                    </td>
-
-                    <td className="table-cell">
-                      {item.referralCode}
-                    </td>
+<td className="table-cell">{item.leadGoal}</td>
+<td className="table-cell">{item.date}</td>
+<td className="table-cell">{item.time}</td>
+<td className="table-cell">{item.clientName}</td>
 
                     <td className="table-cell">
                       <select

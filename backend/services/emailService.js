@@ -1,17 +1,12 @@
 const nodemailer = require("nodemailer");
-
 const transporter = nodemailer.createTransport({
-  host: "74.125.24.108", // smtp.gmail.com IPv4
-  port: 587,
-  secure: false,
+  service: "gmail",
   auth: {
     user: process.env.EMAIL_USER,
     pass: process.env.EMAIL_PASS,
   },
-  tls: {
-    rejectUnauthorized: false,
-  },
 });
+
 
 transporter.verify((error, success) => {
   if (error) {
@@ -37,6 +32,9 @@ exports.sendVoucherEmail = async (email, name) => {
 
       <p>
         You are eligible for an Amazon Gift Voucher.
+      </p>
+      <p>
+      Our team will be contacting you soon to provide you with the voucher details. Thank you for being a valued member of our referral program!
       </p>
     `,
   });

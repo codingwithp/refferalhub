@@ -388,3 +388,28 @@ textarea.hl-input {
 table tr:hover {
   background: rgba(255,255,255,0.03);
 }
+.action-btn {
+  display: inline-block;
+  margin-right: 8px;
+  padding: 6px 12px;
+  border-radius: 8px;
+  background: rgba(77,184,72,0.15);
+  color: #4db848;
+  text-decoration: none;
+  font-size: 13px;
+}
+.pending {
+  color: orange;
+}
+
+.scheduled {
+  color: #4db848;
+}
+
+.consulted {
+  color: #38bdf8;
+}
+
+.converted {
+  color: #a855f7;
+}
