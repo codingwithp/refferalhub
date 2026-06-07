@@ -60,8 +60,8 @@
 
 // export default ClientDashboard;
 
-
 import { useEffect, useState } from "react";
+import "../App.css";
 
 function ClientDashboard() {
   const [user, setUser] = useState(null);
@@ -89,7 +89,7 @@ function ClientDashboard() {
         setCopied(false);
       }, 2000);
     } catch (err) {
-      console.log(err);
+      console.error(err);
     }
   };
 
@@ -105,26 +105,27 @@ function ClientDashboard() {
     );
   }
 
-  const referralLink =
-    `${window.location.origin}/ref/${user.referralCode}`;
+  const referralLink = `${window.location.origin}/ref/${user.referralCode}`;
 
   return (
     <div className="hl-page">
-      <div className="hl-bg-orb hl-bg-orb-1" />
-      <div className="hl-bg-orb hl-bg-orb-2" />
-      <div className="hl-bg-orb hl-bg-orb-3" />
+      <div className="hl-bg-orb hl-bg-orb-1"></div>
+      <div className="hl-bg-orb hl-bg-orb-2"></div>
+      <div className="hl-bg-orb hl-bg-orb-3"></div>
 
       <div
         className="hl-card"
         style={{
-          maxWidth: "900px",
+          maxWidth: "850px",
           width: "100%",
         }}
       >
         <div className="hl-logo-area">
           <div className="hl-logo-badge">
             <div className="hl-leaf-icon">
-              🌿
+              <span style={{ fontSize: "24px" }}>
+                🌿
+              </span>
             </div>
 
             <div className="hl-brand-text">
@@ -138,7 +139,7 @@ function ClientDashboard() {
             </div>
           </div>
 
-          <div className="hl-divider" />
+          <div className="hl-divider"></div>
 
           <p className="hl-tagline">
             Referral Hub Dashboard
@@ -150,25 +151,48 @@ function ClientDashboard() {
         </h1>
 
         <p className="hl-subheading">
-          Share your referral link and help
-          others begin their wellness journey.
+          Share your referral link and help others
+          begin their wellness journey.
         </p>
 
-        <div className="stat-grid">
-          <div className="stat-card">
-            <div className="stat-value">
-              {user.referralCode}
-            </div>
-
-            <p>Your Referral Code</p>
-          </div>
-        </div>
-
+        {/* Referral Code */}
         <div className="dashboard-card">
           <h3
             style={{
-              color: "white",
-              marginBottom: "15px",
+              color: "#fff",
+              marginBottom: "12px",
+            }}
+          >
+            Your Referral Code
+          </h3>
+
+          <div
+            style={{
+              background:
+                "rgba(77,184,72,0.12)",
+              border:
+                "1px solid rgba(77,184,72,0.3)",
+              padding: "15px",
+              borderRadius: "10px",
+              textAlign: "center",
+              color: "#4db848",
+              fontWeight: "700",
+              fontSize: "22px",
+              letterSpacing: "2px",
+            }}
+          >
+            {user.referralCode}
+          </div>
+        </div>
+
+        <br />
+
+        {/* Referral Link */}
+        <div className="dashboard-card">
+          <h3
+            style={{
+              color: "#fff",
+              marginBottom: "12px",
             }}
           >
             Your Referral Link
@@ -180,12 +204,10 @@ function ClientDashboard() {
             readOnly
           />
 
-          <br />
-          <br />
-
           <button
             className="hl-btn"
             onClick={copyLink}
+            style={{ marginTop: "15px" }}
           >
             {copied
               ? "✓ Copied!"
@@ -195,30 +217,44 @@ function ClientDashboard() {
 
         <br />
 
+        {/* Guide */}
         <div className="dashboard-card">
           <h3
             style={{
-              color: "white",
-              marginBottom: "10px",
+              color: "#fff",
+              marginBottom: "12px",
             }}
           >
             How It Works
           </h3>
 
-          <p
+          <div
             style={{
-              color: "rgba(255,255,255,0.7)",
-              lineHeight: "1.7",
+              color:
+                "rgba(255,255,255,0.75)",
+              lineHeight: "1.9",
             }}
           >
-            1. Share your referral link.
-            <br />
-            2. Friends book a free consultation.
-            <br />
-            3. Coaches connect with them.
-            <br />
-            4. Grow your wellness network.
-          </p>
+            <p>
+              1️⃣ Share your referral link with
+              friends and family.
+            </p>
+
+            <p>
+              2️⃣ They book a free wellness
+              consultation.
+            </p>
+
+            <p>
+              3️⃣ Our coaches guide them on
+              nutrition and fitness.
+            </p>
+
+            <p>
+              4️⃣ Help more people start their
+              wellness journey.
+            </p>
+          </div>
         </div>
       </div>
     </div>

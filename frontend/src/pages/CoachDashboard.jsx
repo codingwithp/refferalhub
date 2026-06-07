@@ -121,6 +121,7 @@
 
 import { useEffect, useState } from "react";
 import API from "../services/api";
+import "../App.css";
 
 function CoachDashboard() {
   const [referrals, setReferrals] = useState([]);
@@ -140,10 +141,9 @@ function CoachDashboard() {
 
   const updateStatus = async (id, status) => {
     try {
-      await API.put(
-        `/coach/referrals/${id}`,
-        { status }
-      );
+      await API.put(`/coach/referrals/${id}`, {
+        status,
+      });
 
       fetchPipeline();
     } catch (err) {
@@ -167,7 +167,7 @@ function CoachDashboard() {
         <div className="hl-logo-area">
           <div className="hl-logo-badge">
             <div className="hl-leaf-icon">
-              🌿
+              <span style={{ fontSize: "24px" }}>🌿</span>
             </div>
 
             <div className="hl-brand-text">
@@ -193,16 +193,41 @@ function CoachDashboard() {
         </h1>
 
         <p className="hl-subheading">
-          Manage consultations and referral leads
+          Manage consultation bookings and referral leads
         </p>
 
-        <div className="stat-grid">
-          <div className="stat-card">
-            <div className="stat-value">
+        <div
+          style={{
+            textAlign: "center",
+            marginBottom: "25px",
+          }}
+        >
+          <div
+            style={{
+              display: "inline-block",
+              padding: "15px 25px",
+              borderRadius: "12px",
+              background: "rgba(77,184,72,0.12)",
+              border: "1px solid rgba(77,184,72,0.3)",
+            }}
+          >
+            <h2
+              style={{
+                color: "#4db848",
+                marginBottom: "5px",
+              }}
+            >
               {referrals.length}
-            </div>
+            </h2>
 
-            <p>Total Referrals</p>
+            <p
+              style={{
+                color: "white",
+                margin: 0,
+              }}
+            >
+              Total Referrals
+            </p>
           </div>
         </div>
 
@@ -211,7 +236,7 @@ function CoachDashboard() {
             style={{
               textAlign: "center",
               color: "white",
-              marginTop: "20px",
+              padding: "30px",
             }}
           >
             No referrals yet.
@@ -220,7 +245,6 @@ function CoachDashboard() {
           <div
             style={{
               overflowX: "auto",
-              marginTop: "20px",
             }}
           >
             <table
