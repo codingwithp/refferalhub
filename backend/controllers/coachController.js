@@ -17,6 +17,8 @@ exports.getPipeline = async (req, res) => {
 };
 
 // Update referral status
+
+
 exports.updateStatus = async (req, res) => {
   try {
     const { status } = req.body;
@@ -33,32 +35,53 @@ exports.updateStatus = async (req, res) => {
       });
     }
 
+    // Update status first
     booking.status = status;
 
+    // Save immediately
+    await booking.save();
+
     console.log(
-      "Client Email:",
-      booking.clientEmail
+      "Status updated successfully"
     );
 
+    // Send voucher email only once
     if (
       status === "converted" &&
       !booking.voucherSent
     ) {
-      console.log(
-        "Sending voucher email..."
-      );
+      try {
+        console.log(
+          "Sending voucher email to:",
+          booking.clientEmail
+        );
 
-      await sendVoucherEmail(
-        booking.clientEmail,
-        booking.clientName
-      );
+        await sendVoucherEmail(
+          booking.clientEmail,
+          booking.clientName
+        );
 
-      booking.voucherSent = true;
+        booking.voucherSent = true;
+
+        await booking.save();
+
+        console.log(
+          "Voucher email sent successfully"
+        );
+      } catch (emailError) {
+        console.error(
+          "EMAIL ERROR:",
+          emailError
+        );
+
+        // Don't fail conversion if email fails
+      }
     }
 
-    await booking.save();
-
-    res.json(booking);
+    res.json({
+      message: "Status updated",
+      booking,
+    });
   } catch (err) {
     console.error(
       "UPDATE STATUS ERROR:",
