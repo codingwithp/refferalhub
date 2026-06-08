@@ -1,32 +1,22 @@
 
-require("dns").setDefaultResultOrder("ipv4first");
-const nodemailer = require("nodemailer");
 
 
-const transporter = nodemailer.createTransport({
-  service: "gmail",
-  auth: {
-    user: process.env.EMAIL_USER,
-    pass: process.env.EMAIL_PASS,
-  },
-});
+const { Resend } = require("resend");
+
+const resend = new Resend(
+  process.env.RESEND_API_KEY
+);
 
 exports.sendVoucherEmail = async (
   email,
   name
 ) => {
   try {
-    console.log(
-      "Attempting to send email..."
-    );
-
-    const info =
-      await transporter.sendMail({
-        from: process.env.EMAIL_USER,
-        to: email,
-        subject:
-          "Referral Reward Earned",
-        html: `
+    const data = await resend.emails.send({
+      from: "Referral Hub <onboarding@resend.dev>",
+      to: email,
+      subject: "Referral Reward Earned",
+      html: `
         <h2>Hello ${name}</h2>
 
         <p>Congratulations!</p>
@@ -40,23 +30,16 @@ exports.sendVoucherEmail = async (
         </p>
 
         <p>
-          Our team will contact you soon regarding your reward.
+          Our team will contact you soon.
         </p>
       `,
-      });
+    });
 
-    console.log(
-      "Email sent:",
-      info.messageId
-    );
+    console.log("Email sent:", data);
 
-    return info;
+    return data;
   } catch (err) {
-    console.error(
-      "SEND EMAIL ERROR:",
-      err
-    );
-
+    console.error(err);
     throw err;
   }
 };
