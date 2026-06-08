@@ -260,8 +260,6 @@ function CoachDashboard() {
 <th className="table-head">Phone</th>
 <th className="table-head">Email</th>
 <th className="table-head">Goal</th>
-<th className="table-head">Date</th>
-<th className="table-head">Time</th>
 <th className="table-head">Referred By</th>
 <th className="table-head">Status</th>
                 </tr>
@@ -288,8 +286,6 @@ function CoachDashboard() {
 </td>
 
 <td className="table-cell">{item.leadGoal}</td>
-<td className="table-cell">{item.date}</td>
-<td className="table-cell">{item.time}</td>
 <td className="table-cell">{item.clientName}</td>
 
                     <td className="table-cell">
