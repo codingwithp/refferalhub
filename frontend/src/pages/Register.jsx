@@ -507,7 +507,7 @@ function Register() {
 </div>
 
           <h1 className="hl-heading">Create your account</h1>
-          <p className="hl-subheading">Join as a client or coach today</p>
+         
 
           {error && <div className="hl-error">{error}</div>}
 
