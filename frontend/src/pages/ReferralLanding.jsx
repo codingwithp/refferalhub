@@ -85,6 +85,7 @@ import "../App.css";
 
 function ReferralLanding() {
   const { code } = useParams();
+  
 
   const [form, setForm] = useState({
     leadName: "",
@@ -152,25 +153,19 @@ function ReferralLanding() {
           width: "100%",
         }}
       >
-        <div className="hl-logo-area">
-          <div className="hl-logo-badge">
-            <div className="hl-leaf-icon">
-              <span style={{ fontSize: "24px" }}>
-                🌿
-              </span>
-            </div>
+       
+          <div className="dashboard-navbar">
+          <div className="nav-logo">
+            <img src="/logo.jpeg" alt="Weight Loss Factory" />
 
-            <div className="hl-brand-text">
-              <span className="hl-brand-name">
-                HERBALIFE
-              </span>
-
-              <span className="hl-brand-sub">
-                NUTRITION
-              </span>
+            <div>
+              <h2>Weight Loss Factory</h2>
+              <p>One Stop Solution For Your Health & Fitness</p>
             </div>
           </div>
-
+          </div>
+          
+ <div className="hl-logo-area">
           <div className="hl-divider"></div>
 
           <p className="hl-tagline">
@@ -204,6 +199,10 @@ function ReferralLanding() {
 
           <div className="benefit-card">
             🌱 Healthy Lifestyle
+          </div>
+       
+         <div className="benefit-card">
+            🧴 Skin Health
           </div>
         </div>
 
@@ -290,39 +289,9 @@ function ReferralLanding() {
             />
           </div>
 
-          <div className="hl-row">
-            <div className="hl-field">
-              <label className="hl-label">
-                Preferred Date
-              </label>
+          
 
-              <input
-                className="hl-input"
-                type="date"
-                name="date"
-                value={form.date}
-                onChange={handleChange}
-                required
-              />
-            </div>
-
-            <div className="hl-field">
-              <label className="hl-label">
-                Preferred Time
-              </label>
-
-              <input
-                className="hl-input"
-                type="time"
-                name="time"
-                value={form.time}
-                onChange={handleChange}
-                required
-              />
-            </div>
-          </div>
-
-          <button
+          {/* <button
             className="hl-btn"
             type="submit"
             disabled={loading}
@@ -330,11 +299,23 @@ function ReferralLanding() {
             {loading
               ? "Booking Consultation..."
               : "Book Free Consultation →"}
-          </button>
+          </button> */}
+          <button
+  className="hl-btn"
+  onClick={() =>
+    window.open(
+      "https://weight-loss-factory.dayschedule.com/30-minutes-one-on-one-weight-lossgain-call",
+      "_blank"
+    )
+  }
+>
+  📅 Book Consultation
+</button>
         </form>
       </div>
     </div>
   );
 }
+
 
 export default ReferralLanding;

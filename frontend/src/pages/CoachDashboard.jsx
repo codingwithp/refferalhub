@@ -122,9 +122,18 @@
 import { useEffect, useState } from "react";
 import API from "../services/api";
 import "../App.css";
+import { useNavigate } from "react-router-dom";
+
 
 function CoachDashboard() {
   const [referrals, setReferrals] = useState([]);
+  const navigate = useNavigate();
+
+const handleSignOut = () => {
+  localStorage.removeItem("token");
+  localStorage.removeItem("user");
+  navigate("/");
+};
 
   useEffect(() => {
     fetchPipeline();
@@ -164,28 +173,34 @@ function CoachDashboard() {
           width: "100%",
         }}
       >
-        <div className="hl-logo-area">
-          <div className="hl-logo-badge">
-            <div className="hl-leaf-icon">
-              <span style={{ fontSize: "24px" }}>🌿</span>
-            </div>
+        <div
+  style={{
+    display: "flex",
+    justifyContent: "flex-end",
+    marginBottom: "15px",
+  }}
+>
+ 
+</div>
+       
+          <div className="dashboard-navbar">
+          <div className="nav-logo">
+            <img src="/logo.jpeg" alt="Weight Loss Factory" />
 
-            <div className="hl-brand-text">
-              <span className="hl-brand-name">
-                HERBALIFE
-              </span>
-
-              <span className="hl-brand-sub">
-                NUTRITION
-              </span>
+            <div>
+              <h2>Weight Loss Factory</h2>
+              <p>One Stop Solution For Your Health & Fitness</p>
             </div>
           </div>
 
+          <button className="logout-btn" onClick={handleSignOut}>
+            Sign Out
+          </button>
+        </div>
+ <div className="hl-logo-area">
           <div className="hl-divider" />
 
-          <p className="hl-tagline">
-            Coach Management Dashboard
-          </p>
+          
         </div>
 
         <h1 className="hl-heading">
@@ -196,57 +211,64 @@ function CoachDashboard() {
           Manage consultation bookings and referral leads
         </p>
 
-        <div
-          style={{
-            textAlign: "center",
-            marginBottom: "25px",
-          }}
-        >
-          <div
-            style={{
-              display: "inline-block",
-              padding: "15px 25px",
-              borderRadius: "12px",
-              background: "rgba(77,184,72,0.12)",
-              border: "1px solid rgba(77,184,72,0.3)",
-            }}
-          >
-            <h2
-              style={{
-                color: "#4db848",
-                marginBottom: "5px",
-              }}
-            >
-              {referrals.length}
-            </h2>
+       <div
+  style={{
+    textAlign: "center",
+    marginBottom: "25px",
+  }}
+>
+  <div
+    style={{
+      display: "inline-block",
+      padding: "18px 30px",
+      borderRadius: "14px",
+      background: "#fff7ed",
+      border: "1px solid #fdba74",
+      boxShadow: "0 2px 8px rgba(249,115,22,0.12)",
+    }}
+  >
+    <h2
+      style={{
+        color: "#ea580c",
+        marginBottom: "6px",
+        fontSize: "2rem",
+        fontWeight: "700",
+      }}
+    >
+      {referrals.length}
+    </h2>
 
-            <p
-              style={{
-                color: "white",
-                margin: 0,
-              }}
-            >
-              Total Referrals
-            </p>
-          </div>
-        </div>
+    <p
+      style={{
+        color: "#9a3412",
+        margin: 0,
+        fontWeight: "500",
+      }}
+    >
+      Total Referrals
+    </p>
+  </div>
+</div>
 
-        {referrals.length === 0 ? (
-          <div
-            style={{
-              textAlign: "center",
-              color: "white",
-              padding: "30px",
-            }}
-          >
-            No referrals yet.
-          </div>
-        ) : (
-          <div
-            style={{
-              overflowX: "auto",
-            }}
-          >
+{referrals.length === 0 ? (
+  <div
+    style={{
+      textAlign: "center",
+      color: "#9a3412",
+      padding: "30px",
+      background: "#fff7ed",
+      borderRadius: "12px",
+      border: "1px solid #fdba74",
+    }}
+  >
+    No referrals yet.
+  </div>
+) : (
+  <div
+    style={{
+      overflowX: "auto",
+    }}
+  >
             <table
               style={{
                 width: "100%",
@@ -255,68 +277,88 @@ function CoachDashboard() {
               }}
             >
               <thead>
-                <tr>
-                  <th className="table-head">Lead Name</th>
-<th className="table-head">Phone</th>
-<th className="table-head">Email</th>
-<th className="table-head">Goal</th>
-<th className="table-head">Referred By</th>
-<th className="table-head">Status</th>
-                </tr>
-              </thead>
+               
+  <tr>
+    <th className="table-head">
+      Lead Name
+    </th>
+
+    <th className="table-head">
+      Phone
+    </th>
+
+    <th className="table-head">
+      Email
+    </th>
+
+    <th className="table-head">
+      Goal
+    </th>
+
+    <th className="table-head">
+      Referred By
+    </th>
+
+    <th className="table-head">
+      Status
+    </th>
+  </tr>
+</thead>
+                
 
               <tbody>
                 {referrals.map((item) => (
-                  <tr key={item._id}>
-                    <td className="table-cell">{item.leadName}</td>
-<td className="table-cell">
-  <a
-    href={`tel:${item.leadPhone}`}
-    className="action-btn"
-  >
-    📞 Call
-  </a>
+                 <tr key={item._id}>
+  <td className="table-cell">
+    {item.leadName}
+  </td>
 
-  <a
-    href={`mailto:${item.leadEmail}`}
-    className="action-btn"
-  >
-    ✉ Email
-  </a>
-</td>
+  <td className="table-cell">
+    {item.leadPhone}
+  </td>
 
-<td className="table-cell">{item.leadGoal}</td>
-<td className="table-cell">{item.clientName}</td>
+  <td className="table-cell">
+    {item.leadEmail}
+  </td>
 
-                    <td className="table-cell">
-                      <select
-                        className="hl-select"
-                        value={item.status}
-                        onChange={(e) =>
-                          updateStatus(
-                            item._id,
-                            e.target.value
-                          )
-                        }
-                      >
-                        <option value="pending">
-                          Pending
-                        </option>
+  <td className="table-cell">
+    {item.leadGoal}
+  </td>
 
-                        <option value="scheduled">
-                          Scheduled
-                        </option>
+  <td className="table-cell">
+    {item.clientName}
+  </td>
 
-                        <option value="consulted">
-                          Consulted
-                        </option>
+  <td className="table-cell">
+    <select
+      className="hl-select"
+      value={item.status}
+      onChange={(e) =>
+        updateStatus(
+          item._id,
+          e.target.value
+        )
+      }
+    >
+      <option value="pending">
+        Pending
+      </option>
 
-                        <option value="converted">
-                          Converted
-                        </option>
-                      </select>
-                    </td>
-                  </tr>
+      <option value="scheduled">
+        Scheduled
+      </option>
+
+      <option value="consulted">
+        Consulted
+      </option>
+
+      <option value="converted">
+        Converted
+      </option>
+    </select>
+  </td>
+</tr>
+                
                 ))}
               </tbody>
             </table>

@@ -18,6 +18,13 @@ const coachRoutes =
   require("./routes/coach");
 
 app.use("/api/coach", coachRoutes);
+const clientRoutes =
+  require("./routes/client");
+
+app.use(
+  "/api/client",
+  clientRoutes
+);
 
 mongoose
   .connect(process.env.MONGO_URI)

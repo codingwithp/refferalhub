@@ -22,11 +22,12 @@ exports.createBooking = async (req, res) => {
     }
 
     const booking = await Booking.create({
-      referralCode,
-
+    
       clientId: client._id,
-      clientName: client.name,
-      clientEmail: client.email,
+  clientName: client.name,
+  clientEmail: client.email,
+  referralCode: client.referralCode,
+      
 
       leadName,
       leadPhone,
