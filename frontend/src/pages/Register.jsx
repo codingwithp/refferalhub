@@ -79,6 +79,7 @@ import { useState } from "react";
 import API from "../services/api";
 import { useNavigate } from "react-router-dom";
 import "../App.css";
+import { useParams } from "react-router-dom";
 const styles = `
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Open+Sans:wght@400;500;600&display=swap');
 
@@ -393,7 +394,7 @@ function Register() {
   const [form, setForm] = useState({ name: "", email: "", phone: "", password: "" });
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
-
+  const { coachCode } = useParams();
   const handleChange = (e) => setForm({ ...form, [e.target.name]: e.target.value });
 
   const handleSubmit = async (e) => {
@@ -401,9 +402,15 @@ function Register() {
     setError("");
     setLoading(true);
     try {
-      const res = await API.post("/auth/register", form);
+      const res = await API.post("/auth/register",{
+
+...form,
+
+coachCode
+
+});
       localStorage.setItem("token", res.data.token);
-      navigate("/");
+      navigate("/client-dashboard");
     } catch (err) {
       setError(err?.response?.data?.message || "Registration failed. Please try again.");
     } finally {

@@ -1,16 +1,25 @@
 const express = require("express");
 const router = express.Router();
 
-const {
-  getPipeline,
-  updateStatus,
-} = require("../controllers/coachController");
+const auth = require("../middleware/auth");
+const coachController = require("../controllers/coachController");
 
-router.get("/pipeline", getPipeline);
+router.get(
+  "/clients",
+  auth,
+  coachController.getMyClients
+);
+
+router.get(
+  "/pipeline",
+  auth,
+  coachController.getPipeline
+);
 
 router.put(
   "/referrals/:id",
-  updateStatus
+  auth,
+  coachController.updateStatus
 );
 
 module.exports = router;

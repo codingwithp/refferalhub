@@ -6,8 +6,23 @@ const validator = require("validator");
 
 exports.register = async (req, res) => {
   try {
-    const { name, email, phone, password } = req.body;
+    const {
+name,
+email,
+phone,
+password,
+coachCode
+}=req.body;
+const validatePhone = (phone) => {
+  const phoneRegex = /^[6-9]\d{9}$/;
+  return phoneRegex.test(phone);
+};
 
+// Example
+if (!validatePhone(form.phone)) {
+  alert("Please enter a valid 10-digit Indian phone number.");
+  return;
+}
     // Email validation
     if (!validator.isEmail(email)) {
       return res.status(400).json({
@@ -22,6 +37,23 @@ exports.register = async (req, res) => {
         message: "User already exists",
       });
     }
+    const coach = await User.findOne({
+
+coachCode,
+
+role:"coach"
+
+});
+
+if(!coach){
+
+return res.status(404).json({
+
+message:"Invalid Coach Code"
+
+});
+
+}
 
     
     const referralCode =
@@ -36,14 +68,25 @@ exports.register = async (req, res) => {
       10
     );
 
-    const user = await User.create({
-      name,
-      email,
-      phone,
-      password: hashedPassword,
-      referralCode,
-    });
+    const user=await User.create({
 
+name,
+
+email,
+
+phone,
+
+password:hashedPassword,
+
+role:"client",
+
+coach:coach._id,
+
+referralCode,
+
+
+
+});
     res.status(201).json({
       message: "Registration successful",
       referralCode: user.referralCode,
@@ -62,32 +105,8 @@ exports.login = async (req, res) => {
   try {
     const { email, password } = req.body;
 
-    // Hardcoded coach login
-    if (
-      email === "referralhub10@gmail.com" &&
-      password === "referral@10"
-    ) {
-      const token = jwt.sign(
-        {
-          id: "coach",
-          role: "coach",
-        },
-        process.env.JWT_SECRET,
-        {
-          expiresIn: "1d",
-        }
-      );
-
-      return res.json({
-        token,
-        user: {
-          name: "Prasanna",
-          email: "referralhub10@gmail.com",
-          phone: "9902581097",
-          role: "coach",
-        },
-      });
-    }
+    
+   
 
     // Normal client login
     const user = await User.findOne({ email });

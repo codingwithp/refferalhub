@@ -8,7 +8,7 @@ exports.getRewardCount = async (req, res) => {
     const rewardCount =
       await Booking.countDocuments({
         clientId: userId,
-        status: "converted",
+        status: "rewardsent",
       });
 
     res.json({

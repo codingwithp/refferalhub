@@ -85,6 +85,14 @@ import "../App.css";
 
 function ReferralLanding() {
   const { code } = useParams();
+  const [goal, setGoal] = useState("");
+  const goals = [
+  "🎯 Weight Loss",
+  "💪 Weight Gain",
+  "⚡ Energy & Fitness",
+  "🌱 Healthy Lifestyle",
+  "🧴 Skin Health",
+];
   
 
   const [form, setForm] = useState({
@@ -184,28 +192,9 @@ function ReferralLanding() {
           healthy lifestyle habits.
         </p>
 
-        <div className="benefits">
-          <div className="benefit-card">
-            🎯 Weight Loss
-          </div>
+    
 
-          <div className="benefit-card">
-            💪 Weight Gain
-          </div>
-
-          <div className="benefit-card">
-            ⚡ Energy & Fitness
-          </div>
-
-          <div className="benefit-card">
-            🌱 Healthy Lifestyle
-          </div>
-       
-         <div className="benefit-card">
-            🧴 Skin Health
-          </div>
-        </div>
-
+    
         {success && (
           <div className="success-box">
             🎉 Consultation booked
@@ -274,20 +263,38 @@ function ReferralLanding() {
             </div>
           </div>
 
-          <div className="hl-field">
-            <label className="hl-label">
-              Your Goal
-            </label>
+         <div className="hl-field">
+  <label className="hl-label">
+    Select Your Goal
+  </label>
 
-            <textarea
-              className="hl-input"
-              rows="4"
-              name="leadGoal"
-              value={form.leadGoal}
-              onChange={handleChange}
-              placeholder="Tell us about your goals (weight loss, weight gain, fitness, wellness...)"
-            />
-          </div>
+  <div className="benefits">
+    {goals.map((item) => (
+      <div
+        key={item}
+        className={`benefit-card ${
+          form.leadGoal === item ? "selected-benefit" : ""
+        }`}
+        onClick={() =>
+          setForm({
+            ...form,
+            leadGoal: item,
+          })
+        }
+      >
+        {item}
+      </div>
+    ))}
+  </div>
+
+  <input
+    type="text"
+    className="hl-input"
+    value={form.leadGoal}
+    readOnly
+    placeholder="Select a goal above"
+  />
+</div>
 
           
 

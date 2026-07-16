@@ -1,75 +1,45 @@
-// // 
-// const mongoose = require("mongoose");
+// 
 
-// const BookingSchema = new mongoose.Schema(
-//   {
-//     referralCode: String,
+const mongoose=require("mongoose");
 
-//     clientId: {
-//       type: mongoose.Schema.Types.ObjectId,
-//       ref: "User",
-//     },
+const BookingSchema=new mongoose.Schema({
 
-//     clientName: String,
+    referralCode:String,
 
-//     clientEmail: String,
-
-//     leadName: String,
-//     leadPhone: String,
-//     leadEmail: String,
-//     leadGoal: String,
-
-//     status: {
-//       type: String,
-//       default: "pending",
-//     },
-//   },
-//   {
-//     timestamps: true,
-//   }
-// );
-
-// module.exports = mongoose.model(
-//   "Booking",
-//   BookingSchema
-// );
-const mongoose = require("mongoose");
-
-const BookingSchema = new mongoose.Schema(
-  {
-    referralCode: String,
-
-    clientId: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "User",
+    clientId:{
+        type:mongoose.Schema.Types.ObjectId,
+        ref:"User"
     },
 
-    clientName: String,
-
-    clientEmail: String,
-
-    leadName: String,
-    leadPhone: String,
-    leadEmail: String,
-    leadGoal: String,
-
-    status: {
-      type: String,
-      default: "pending",
+    coachId:{
+        type:mongoose.Schema.Types.ObjectId,
+        ref:"User"
     },
 
-    voucherSent: {
-      type: Boolean,
-      default: false,
+    clientName:String,
+
+    clientEmail:String,
+
+    leadName:String,
+
+    leadPhone:String,
+
+    leadEmail:String,
+
+    leadGoal:String,
+
+    status:{
+        type:String,
+        default:"pending"
     },
-  },
-  {
-    timestamps: true,
-  }
 
-);
+    voucherSent:{
+        type:Boolean,
+        default:false
+    }
 
-module.exports = mongoose.model(
-  "Booking",
-  BookingSchema
-);
+},{
+    timestamps:true
+});
+
+module.exports=mongoose.model("Booking",BookingSchema);

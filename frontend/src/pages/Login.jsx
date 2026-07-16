@@ -434,11 +434,13 @@ function Login() {
         JSON.stringify(res.data.user)
       );
 
-      if (res.data.user.role === "coach") {
-        navigate("/dashboard");
-      } else {
-        navigate("/client-dashboard");
-      }
+      if (res.data.user.role === "superadmin") {
+  navigate("/superadmin");
+} else if (res.data.user.role === "coach") {
+  navigate("/dashboard");
+} else {
+  navigate("/client-dashboard");
+}
     } catch (err) {
       setError(
         err?.response?.data?.message ||

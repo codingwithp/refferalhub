@@ -1,10 +1,42 @@
 const Booking = require("../models/Booking");
 const { sendVoucherEmail } = require("../services/emailService");
+const User = require("../models/User");
 
+exports.getMyClients = async(req,res)=>{
+
+try{
+
+const clients = await User.find({
+
+role:"client",
+
+coach:req.user.id
+
+});
+
+res.json(clients);
+
+}
+
+catch(err){
+
+res.status(500).json({
+
+message:err.message
+
+});
+
+}
+
+};
 // Get all referrals
 exports.getPipeline = async (req, res) => {
   try {
-    const bookings = await Booking.find();
+    const bookings = await Booking.find({
+
+coachId:req.user.id
+
+});
 
     res.json(bookings);
   } catch (err) {
@@ -25,22 +57,20 @@ exports.updateStatus = async (req, res) => {
 
     console.log("Updating status:", status);
 
-    const booking = await Booking.findById(
-      req.params.id
-    );
+   const booking = await Booking.findOne({
+    _id: req.params.id,
+    coachId: req.user.id
+});
 
-    if (!booking) {
-      return res.status(404).json({
-        message: "Booking not found",
-      });
-    }
+if (!booking) {
+    return res.status(404).json({
+        message: "Booking not found"
+    });
+}
 
-    // Update status first
-    booking.status = status;
+booking.status = status;
 
-    // Save immediately
-    await booking.save();
-
+await booking.save();
     console.log(
       "Status updated successfully"
     );

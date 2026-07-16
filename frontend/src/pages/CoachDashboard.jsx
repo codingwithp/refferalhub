@@ -1,121 +1,4 @@
-// import { useEffect, useState } from "react";
-// import API from "../services/api";
 
-// function CoachDashboard() {
-//   const [referrals, setReferrals] = useState([]);
-
-//   useEffect(() => {
-//     fetchPipeline();
-//   }, []);
-
-//   const fetchPipeline = async () => {
-//     try {
-//       const res = await API.get("/coach/pipeline");
-//       setReferrals(res.data);
-//     } catch (err) {
-//       console.log(err);
-//     }
-//   };
-
-//   const updateStatus = async (id, status) => {
-//     try {
-//       await API.put(
-//         `/coach/referrals/${id}`,
-//         { status }
-//       );
-
-//       fetchPipeline();
-//     } catch (err) {
-//       console.log(err);
-//     }
-//   };
-
-//   return (
-//     <div className="container">
-//       <h1>Coach Dashboard</h1>
-
-//       {referrals.length === 0 ? (
-//         <p>No referrals yet.</p>
-//       ) : (
-//         <div className="grid">
-//           {referrals.map((item) => (
-//             <div
-//               className="card"
-//               key={item._id}
-//             >
-             
-
-//              <p>
-//   <strong>Lead Name:</strong>{" "}
-//   {item.leadName}
-// </p>
-
-// <p>
-//   <strong>Lead Email:</strong>{" "}
-//   {item.leadEmail}
-// </p>
-
-// <p>
-//   <strong>Lead Phone:</strong>{" "}
-//   {item.leadPhone}
-// </p>
-
-// <hr />
-
-// <p>
-//   <strong>Referred By:</strong>{" "}
-//   {item.clientName}
-// </p>
-
-// <p>
-//   <strong>Referral Email:</strong>{" "}
-//   {item.clientEmail}
-// </p>
-
-// <p>
-//   <strong>Referral Code:</strong>{" "}
-//   {item.referralCode}
-// </p>
-
-//               <p>
-//                 <strong>Status:</strong>{" "}
-//                 {item.status}
-//               </p>
-
-//               <select
-//                 value={item.status}
-//                 onChange={(e) =>
-//                   updateStatus(
-//                     item._id,
-//                     e.target.value
-//                   )
-//                 }
-//               >
-//                 <option value="pending">
-//                   Pending
-//                 </option>
-
-//                 <option value="scheduled">
-//                   Scheduled
-//                 </option>
-
-//                 <option value="consulted">
-//                   Consulted
-//                 </option>
-
-//                 <option value="converted">
-//                   Converted
-//                 </option>
-//               </select>
-//             </div>
-//           ))}
-//         </div>
-//       )}
-//     </div>
-//   );
-// }
-
-// export default CoachDashboard;
 
 
 
@@ -123,12 +6,19 @@ import { useEffect, useState } from "react";
 import API from "../services/api";
 import "../App.css";
 import { useNavigate } from "react-router-dom";
-
+import { FiCopy } from "react-icons/fi";
 
 function CoachDashboard() {
   const [referrals, setReferrals] = useState([]);
   const navigate = useNavigate();
-
+  const user = JSON.parse(localStorage.getItem("user"));
+const copyLink = async () => {
+    await navigator.clipboard.writeText(coachLink);
+    alert("Copied");
+};
+const coachLink =
+`${window.location.origin}/register/${user.coachCode}`;
+const [clients,setClients]=useState([]);
 const handleSignOut = () => {
   localStorage.removeItem("token");
   localStorage.removeItem("user");
@@ -137,8 +27,15 @@ const handleSignOut = () => {
 
   useEffect(() => {
     fetchPipeline();
-  }, []);
+    fetchClients();
+  },[]);
+  const fetchClients=async()=>{
 
+const res=await API.get("/coach/clients");
+
+setClients(res.data);
+
+};
   const fetchPipeline = async () => {
     try {
       const res = await API.get("/coach/pipeline");
@@ -210,6 +107,48 @@ const handleSignOut = () => {
         <p className="hl-subheading">
           Manage consultation bookings and referral leads
         </p>
+        {/* <input
+value={coachLink}
+readOnly
+className="hl-input"
+/> */}
+
+<div
+  style={{
+    display: "flex",
+    alignItems: "center",
+    border: "1px solid #ddd",
+    borderRadius: "10px",
+    overflow: "hidden",
+    marginBottom: "20px",
+  }}
+>
+  <input
+    value={coachLink}
+    readOnly
+    style={{
+      flex: 1,
+      border: "none",
+      padding: "12px",
+      outline: "none",
+      background: "#fff",
+    }}
+  />
+
+  <button
+    onClick={copyLink}
+    style={{
+      border: "none",
+      background: "transparent",
+      cursor: "pointer",
+      padding: "12px 15px",
+      color: "#F26522",
+      fontSize: "20px",
+    }}
+  >
+    <FiCopy />
+  </button>
+</div>
 
        <div
   style={{
@@ -269,6 +208,42 @@ const handleSignOut = () => {
       overflowX: "auto",
     }}
   >
+
+{/* <table>
+
+<thead>
+
+<tr>
+
+<th>Name</th>
+
+<th>Email</th>
+
+<th>Referral Code</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+{clients.map(client=>(
+
+<tr key={client._id}>
+
+<td>{client.name}</td>
+
+<td>{client.email}</td>
+
+<td>{client.referralCode}</td>
+
+</tr>
+
+))}
+
+</tbody>
+
+</table> */}
             <table
               style={{
                 width: "100%",
@@ -328,6 +303,9 @@ const handleSignOut = () => {
   <td className="table-cell">
     {item.clientName}
   </td>
+  <td className="table-cell">
+    {item.clientEmail}
+  </td>
 
   <td className="table-cell">
     <select
@@ -354,6 +332,14 @@ const handleSignOut = () => {
 
       <option value="converted">
         Converted
+      </option>
+      <option value="negative">
+        Negative
+      </option>
+      <option value="rewardsent">
+        Reward Sent
+
+
       </option>
     </select>
   </td>

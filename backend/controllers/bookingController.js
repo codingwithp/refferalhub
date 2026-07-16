@@ -11,9 +11,9 @@ exports.createBooking = async (req, res) => {
       leadGoal,
     } = req.body;
 
-    const client = await User.findOne({
-      referralCode,
-    });
+    const client=await User.findOne({
+    referralCode
+});
 
     if (!client) {
       return res.status(404).json({
@@ -21,20 +21,27 @@ exports.createBooking = async (req, res) => {
       });
     }
 
-    const booking = await Booking.create({
-    
-      clientId: client._id,
-  clientName: client.name,
-  clientEmail: client.email,
-  referralCode: client.referralCode,
-      
+   const booking=await Booking.create({
 
-      leadName,
-      leadPhone,
-      leadEmail,
-      leadGoal,
-    });
+    clientId:client._id,
 
+    coachId:client.coach,
+
+    clientName:client.name,
+
+    clientEmail:client.email,
+
+    referralCode:client.referralCode,
+
+    leadName,
+
+    leadPhone,
+
+    leadEmail,
+
+    leadGoal
+
+});
     res.status(201).json(booking);
   } catch (err) {
     console.log(err);
