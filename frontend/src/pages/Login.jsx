@@ -582,12 +582,12 @@ function Login() {
             </button>
           </form>
 
-          <p className="hl-footer">
+          {/* <p className="hl-footer">
             Don't have an account?{" "}
             <Link to="/register">
               Register
             </Link>
-          </p>
+          </p> */}
         </div>
       </div>
     </>
