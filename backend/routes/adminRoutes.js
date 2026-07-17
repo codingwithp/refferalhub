@@ -79,5 +79,6 @@ isSuperAdmin,
 adminController.deleteCoach
 
 );
+router.get("/applications", controller.getApplications);
 
 module.exports = router;

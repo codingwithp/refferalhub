@@ -26,7 +26,9 @@ app.use(
   clientRoutes
 );
 app.use("/api/admin", require("./routes/adminRoutes"));
+const careerRoutes = require("./routes/careerRoutes");
 
+app.use("/api/career",careerRoutes);
 mongoose
   .connect(process.env.MONGO_URI)
   .then(() => console.log("MongoDB Connected"))

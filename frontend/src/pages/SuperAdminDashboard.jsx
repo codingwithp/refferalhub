@@ -118,6 +118,7 @@ Manage coaches, clients and referrals
 
 </div>
 
+
 {/* <div className="stat-card">
 
 <h2>{stats.leads}</h2>
@@ -147,6 +148,18 @@ onClick={()=>navigate("/admin/create-coach")}
 >
 
 ➕ Create Coach
+
+</button>
+<button
+
+className="quick-card"
+
+onClick={()=>navigate("/admin/career")}
+
+>
+    
+
+Career applications
 
 </button>
 

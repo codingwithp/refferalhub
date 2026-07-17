@@ -1,164 +1,348 @@
 import { Link } from "react-router-dom";
-import "../Home.css";
+import "../PHome.css";
+import {
+  FaFacebookF,
+  FaInstagram,
+  FaWhatsapp,
+  FaXTwitter,
+  FaLocationDot
+} from "react-icons/fa6";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation, Pagination, Autoplay } from "swiper/modules";
+
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
 
 function Home() {
   return (
-    <div className="home">
+    <div className="home-page">
 
-      {/* ── NAV ── */}
-      <nav className="navbar">
-        <div className="nav-logo">
-          <div className="nav-logo-icon">
-            <svg viewBox="0 0 24 24" fill="white" width="20" height="20">
-              <circle cx="12" cy="7" r="4" />
-              <path d="M5 20c0-3.3 3.1-6 7-6s7 2.7 7 6" />
-            </svg>
+      {/* ================= NAVBAR ================= */}
+
+      <nav className="nav">
+
+        <div className="nav-left">
+
+          <div className="logo">
+
+            <img
+              src="/logo.jpeg"
+              alt="Weight Loss Factory"
+              className="logo-img"
+            />
+
+            <div className="logo-text">
+              <h2>Weight Loss Factory</h2>
+              <p>One Stop Solution For Your Health</p>
+            </div>
+
           </div>
-          <span className="nav-logo-text">
-            Weight Loss <strong>Factory</strong>
-          </span>
+
         </div>
 
         <div className="nav-links">
-          <a href="#how">How It Works</a>
-          {/* <a href="#benefits">Rewards</a> */}
-          {/* <a href="#cta">Join</a> */}
+
+          <a href="#home">Home</a>
+
+          <a href="#gallery">Gallery</a>
+
+          <a href="/career">
+            Career & Franchise
+          </a>
+
+          <Link to="/referral">
+            Refer & Earn
+          </Link>
+
+          <a href="#contact">
+            Contact Us
+          </a>
+
         </div>
 
-        <div className="nav-buttons">
-          <Link to="/login" className="login-btn">Log In</Link>
-          <Link to="/register" className="register-btn">Join Now</Link>
-        </div>
       </nav>
 
-      {/* ── HERO ── */}
-      <section className="hero">
-        <div className="hero-content">
-          <div className="hero-eyebrow">
-            <span className="eyebrow-dot" />
-            Performance Referral Program
-          </div>
+      {/* ================= HERO ================= */}
+<section className="hero">
 
-          <h1>
-            Give Health,
-            <span className="hero-accent"> Get Rewarded</span>
-          </h1>
+ 
 
-          <p className="hero-sub">
-            Empower your circle with professional weight loss guidance. For every
-            friend who transforms their life, you earn exclusive rewards and credit
-            toward your own performance journey.
-          </p>
+    <div className="hero-left">
 
-          <div className="hero-btns">
-            <Link to="/register" className="hero-btn-primary">
-              Start Referring Now
-              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="white" strokeWidth="2.5" strokeLinecap="round">
-                <path d="M5 12h14M13 6l6 6-6 6" />
-              </svg>
-            </Link>
+      <h1>
+        Transform <br />
+        Your Life, <br />
+        <span>Naturally.</span>
+      </h1>
+
+      <h3>Personalized Nutrition & Wellness Programs</h3>
+
+      <p>
+        You're in the right place. This is where your transformation
+        begins. We help you lose weight, gain confidence and build a
+        healthier lifestyle with expert nutrition guidance, regular
+        follow-ups and continuous motivation.
+      </p>
+
+        <div className="hero-buttons">
+
            
+
+            <a
+              href="https://canva.link/z02syh3fs3o2y8v"
+              className="secondary-btn"
+            >
+              Watch Success Stories →
+            </a>
+
           </div>
 
-          {/* <div className="hero-trust">
-            <div className="trust-avatars">
-              <span className="av av1">AK</span>
-              <span className="av av2">PL</span>
-              <span className="av av3">MR</span>
-            </div>
-            <span>Joined by <strong>2,400+</strong> members this month</span>
-          </div> */}
-        </div>
+   </div>
 
-       <div className="brand-figure">
+    <div className="brand-figure">
   <img
     src="/logo.jpeg"
     alt="Weight Loss Factory"
     className="hero-logo"
   />
 </div>
-      </section>
 
-      {/* ── HOW IT WORKS ── */}
-      <section className="how" id="how">
-        <div className="sec-tag">Simple Process</div>
-        <h2 className="sec-title">HOW IT WORKS</h2>
-        <p className="sec-sub">
-          Our structured system ensures both you and your friends receive maximum
-          value through every step of the transformation.
-        </p>
-        <div className="steps">
-          <div className="step">
-            <div className="step-icon step-icon-orange">
-              <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="#F26522" strokeWidth="2" strokeLinecap="round">
-                <circle cx="18" cy="5" r="3" /><circle cx="6" cy="12" r="3" /><circle cx="18" cy="19" r="3" />
-                <path d="M8.59 13.51l6.83 3.98M15.41 6.51l-6.82 3.98" />
-              </svg>
-            </div>
-            <div className="step-num">1. SHARE</div>
-            <p>Send your unique referral link to friends via WhatsApp, Email, or Social Media. It takes 10 seconds.</p>
-          </div>
+ 
 
-          <div className="step step-active">
-            <div className="step-icon step-icon-green">
-              <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="#2E7D4B" strokeWidth="2" strokeLinecap="round">
-                <path d="M16 11c1.66 0 3-1.34 3-3s-1.34-3-3-3" />
-                <path d="M8 11c-1.66 0-3-1.34-3-3S6.34 5 8 5" />
-                <path d="M12 14c-3.87 0-7 1.79-7 4v1h14v-1c0-2.21-3.13-4-7-4z" />
-                <path d="M17 14c2.33.47 4 1.9 4 3.6V19" />
-                <path d="M7 14c-2.33.47-4 1.9-4 3.6V19" />
-                <circle cx="12" cy="8" r="3" />
-              </svg>
-            </div>
-            <div className="step-num">2. JOIN</div>
-            <p>Your friends sign up for a Weight Loss Factory program using your link to become a new member.</p>
-          </div>
+</section>
+     
+      {/* ================= GALLERY ================= */}
 
-          <div className="step">
-            <div className="step-icon step-icon-orange">
-              <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="#F26522" strokeWidth="2" strokeLinecap="round">
-                <rect x="2" y="7" width="20" height="15" rx="2" /><path d="M16 3H8L2 7h20L16 3z" />
-                <path d="M12 12v5M9.5 14.5l2.5 2.5 2.5-2.5" />
-              </svg>
-            </div>
-            <div className="step-num">3. REWARD</div>
-            <p>Once they begin their journey, your rewards are automatically credited to your Dashboard. Progress together.</p>
-          </div>
-        </div>
-      </section>
+<section className="gallery-section" id="gallery">
 
-      
+<h2 className="section-title">
+Gallery
+</h2>
 
-      {/* ── CTA ── */}
-      <section className="cta-section" id="cta">
-        <div className="cta-inner">
-          <div className="cta-pill">Get Started Today</div>
-          <h2>Ready to Start Your Referral Journey?</h2>
-          <p>
-            Join thousands of members earning rewards while helping friends achieve
-            their weight loss goals. Create your free account or log in.
-          </p>
-          <div className="cta-buttons">
-            <Link to="/register" className="cta-btn-primary">Create Free Account</Link>
-            <Link to="/login" className="cta-btn-ghost">Log In</Link>
-          </div>
-          <p className="cta-note">No credit card required · Free to join</p>
-        </div>
-      </section>
+<p className="section-subtitle">
+Real Transformations • Nutrition Club • Healthy Lifestyle
+</p>
+<div className="gallery-slider">
+ 
+<Swiper
+  modules={[Navigation, Pagination, Autoplay]}
+  slidesPerView={1}
+  spaceBetween={0}
+  loop={true}
+  speed={1500}          // Transition duration (1 second)
+  autoplay={{
+    delay: 3500,        // Stay on each slide for 3.5 seconds
+    disableOnInteraction: false,
+  }}
+  navigation
+  pagination={{ clickable: true }}
+>
+  <SwiperSlide>
+    <img src="/i1.jpeg" alt="" />
+  </SwiperSlide>
 
-      {/* ── FOOTER ── */}
-      <footer className="footer">
-        <div className="footer-logo">Weight Loss <span>Factory</span></div>
-        <p>© 2026 Weight Loss Factory. All rights reserved.</p>
-        <div className="footer-links">
-          <a href="#">Privacy</a>
-          <a href="#">Terms</a>
-          <a href="#">Support</a>
-        </div>
-      </footer>
+  <SwiperSlide>
+    <img src="/i2.jpeg" alt="" />
+  </SwiperSlide>
 
+  <SwiperSlide>
+    <img src="/i3.jpeg" alt="" />
+  </SwiperSlide>
+  <SwiperSlide>
+    <img src="/i4.jpeg" alt="" />
+  </SwiperSlide>
+  <SwiperSlide>
+    <img src="/i5.jpeg" alt="" />
+  </SwiperSlide>
+  <SwiperSlide>
+    <img src="/i6.jpeg" alt="" />
+  </SwiperSlide>
+  <SwiperSlide>
+    <img src="/i7.jpeg" alt="" />
+  </SwiperSlide>
+  <SwiperSlide>
+    <img src="/i8.jpeg" alt="" />
+  </SwiperSlide>
+  <SwiperSlide>
+    <img src="/i9.jpeg" alt="" />
+  </SwiperSlide>
+</Swiper>
+</div>
+
+
+
+
+{/* <img src="/i1.jpeg" alt="" />
+</div>
+
+<div className="gallery-card">
+<img src="/i2.jpeg" alt="" />
+</div>
+
+<div className="gallery-card">
+<img src="/i3.jpeg" alt="" />
+</div>
+
+<div className="gallery-card">
+<img src="/i4.jpeg" alt="" />
+</div>
+
+<div className="gallery-card">
+<img src="/i5.jpeg" alt="" />
+</div>
+<div className="gallery-card">
+<img src="/i6.jpeg" alt="" />
+</div>
+<div className="gallery-card">
+<img src="/i7.jpeg" alt="" />
+</div>
+<div className="gallery-card">
+<img src="/i8.jpeg" alt="" />
+</div>
+<div className="gallery-card">
+<img src="/i9.jpeg" alt="" />
+</div>
+</div> */}
+
+
+</section>
+
+
+{/* ================= CONTACT ================= */}
+
+<section className="contact-section" id="contact">
+
+<h2 className="section-title">
+Contact Us
+</h2>
+
+<div className="contact-container">
+
+<div className="contact-card">
+
+<h3>Virtual Consultation</h3>
+
+<p>
+Monday - Saturday
+</p>
+
+<p>
+7:30 AM - 8:30 AM
+</p>
+
+</div>
+
+<div className="contact-card">
+
+<h3>Information Session</h3>
+
+<p>
+6:00 PM - 6:30 PM
+</p>
+
+<p>
+Special Appointments Available
+</p>
+
+</div>
+
+<div className="contact-card">
+
+<h3>Nutrition Club</h3>
+
+<p>
+Physical:Kathriguppe,Bangalore
+Virtual:Zoom
+</p>
+
+</div>
+
+<div className="contact-card">
+
+<h3>Contact</h3>
+
+<p>
+Prasanna Acharya
+</p>
+
+<p>
+📞 +91 7892545499
+</p>
+
+<p>
+✉️ weightlossnutritioncentre@gmail.com
+</p>
+
+</div>
+
+</div>
+
+</section>
+<footer className="footer">
+
+  <div className="footer-left">
+
+    <h2>Weight Loss Factory</h2>
+
+    <p>
+      One Stop Solution For Your Health & Fitness
+    </p>
+
+    <p>
+      © 2026 Weight Loss Factory
+    </p>
+
+  </div>
+
+  <div className="footer-social">
+
+    <a
+      href="https://www.facebook.com/prasannac.acharya/"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      <FaFacebookF size={36}  />
+    </a>
+
+    <a
+      href="https://www.instagram.com/health_fit_weight_loss_coach/"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      <FaInstagram size={36}  />
+    </a>
+
+    <a
+      href="https://x.com/fitness4ucoach"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      <FaXTwitter size={36}  />
+    </a>
+
+    <a
+      href="https://api.whatsapp.com/send/?phone=917892545499&text=Hi&type=phone_number&app_absent=0"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      <FaWhatsapp size={36} />
+    </a>
+
+    <a
+      href="https://www.google.com/maps/place/Weight+Loss+Nutrition+Centre(Virtual+Now)/@12.9417797,77.5588086,17z/data=!3m1!4b1!4m6!3m5!1s0x3bae3f4ba6425bab:0x66234fa2f48cecff!8m2!3d12.9417797!4d77.5588086!16s%2Fg%2F11fct212h8?coh=164777&entry=tt&shorturl=1"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      <FaLocationDot size={36} />
+    </a>
+
+  </div>
+
+</footer>
     </div>
   );
 }
+
 
 export default Home;

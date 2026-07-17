@@ -646,6 +646,133 @@
   .cta-buttons { flex-direction: column; align-items: stretch; }
   .cta-btn-primary, .cta-btn-ghost { justify-content: center; }
 }
+/* ================= PROGRAMS ================= */
+
+.programs-section{
+
+padding:90px 8%;
+
+background:#fafafa;
+
+}
+
+.section-title{
+
+text-align:center;
+
+max-width:750px;
+
+margin:auto;
+
+margin-bottom:60px;
+
+}
+
+.section-tag{
+
+color:#F26522;
+
+font-weight:700;
+
+letter-spacing:2px;
+
+margin-bottom:10px;
+
+text-transform:uppercase;
+
+}
+
+.section-title h2{
+
+font-size:42px;
+
+margin-bottom:20px;
+
+font-weight:700;
+
+color:#222;
+
+}
+
+.section-title p{
+
+font-size:17px;
+
+line-height:1.8;
+
+color:#666;
+
+}
+
+.program-grid{
+
+display:grid;
+
+grid-template-columns:repeat(auto-fit,minmax(330px,1fr));
+
+gap:35px;
+
+}
+
+.program-card{
+
+background:white;
+
+border-radius:20px;
+
+overflow:hidden;
+
+box-shadow:0 12px 30px rgba(0,0,0,.08);
+
+transition:.35s;
+
+cursor:pointer;
+
+}
+
+.program-card:hover{
+
+transform:translateY(-12px);
+
+box-shadow:0 20px 45px rgba(0,0,0,.15);
+
+}
+
+.program-card img{
+
+width:100%;
+
+height:230px;
+
+object-fit:cover;
+
+}
+
+.program-content{
+
+padding:28px;
+
+}
+
+.program-content h3{
+
+font-size:24px;
+
+margin-bottom:15px;
+
+color:#F26522;
+
+}
+
+.program-content p{
+
+color:#666;
+
+line-height:1.7;
+
+font-size:15px;
+
+}
 
 /* Animations */
 @keyframes fadeUp {

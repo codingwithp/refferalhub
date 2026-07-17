@@ -286,4 +286,26 @@ exports.getLeads = async (req, res) => {
     });
 
   }
+  const CareerApplication = require("../models/CareerApplication");
+
+exports.getApplications = async (req, res) => {
+
+    try{
+
+        const applications = await CareerApplication.find()
+        .sort({ createdAt: -1 });
+
+        res.json(applications);
+
+    }
+
+    catch(err){
+
+        res.status(500).json({
+            message:err.message
+        });
+
+    }
+
+}
 };
