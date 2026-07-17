@@ -134,6 +134,8 @@ Select Occupation
 
 <option>Fitness Enthusiast</option>
 
+<option>Retired</option>
+
 <option>Other</option>
 
 </select>

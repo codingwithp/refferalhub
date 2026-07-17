@@ -9,66 +9,78 @@ import {
 } from "react-icons/fa6";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination, Autoplay } from "swiper/modules";
-
+import { useState } from "react";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 
+
 function Home() {
+  const [menuOpen, setMenuOpen] = useState(false);
   return (
     <div className="home-page">
 
       {/* ================= NAVBAR ================= */}
 
-      <nav className="nav">
+    <nav className="nav">
 
-        <div className="nav-left">
+  <div className="nav-left">
 
-          <div className="logo">
+    <div className="logo">
+      <img
+        src="/logo.jpeg"
+        alt="Weight Loss Factory"
+        className="logo-img"
+      />
 
-            <img
-              src="/logo.jpeg"
-              alt="Weight Loss Factory"
-              className="logo-img"
-            />
+      <div className="logo-text">
+        <h2>Weight Loss Factory</h2>
+        <p>One Stop Solution For Your Health</p>
+      </div>
+    </div>
 
-            <div className="logo-text">
-              <h2>Weight Loss Factory</h2>
-              <p>One Stop Solution For Your Health</p>
-            </div>
+  </div>
 
-          </div>
+  {/* Hamburger */}
+  <div
+    className="hamburger"
+    onClick={() => setMenuOpen(!menuOpen)}
+  >
+    ☰
+  </div>
 
-        </div>
+  <div className={`nav-links ${menuOpen ? "active" : ""}`}>
 
-        <div className="nav-links">
+    <a href="#home" onClick={() => setMenuOpen(false)}>
+      Home
+    </a>
 
-          <a href="#home">Home</a>
+    <a href="#gallery" onClick={() => setMenuOpen(false)}>
+      Gallery
+    </a>
 
-          <a href="#gallery">Gallery</a>
+    <Link to="/career" onClick={() => setMenuOpen(false)}>
+      Career & Franchise
+    </Link>
 
-          <a href="/career">
-            Career & Franchise
-          </a>
+    <Link to="/referral" onClick={() => setMenuOpen(false)}>
+      Refer & Earn
+    </Link>
 
-          <Link to="/referral">
-            Refer & Earn
-          </Link>
+    <a href="#contact" onClick={() => setMenuOpen(false)}>
+      Contact Us
+    </a>
 
-          <a href="#contact">
-            Contact Us
-          </a>
+  </div>
 
-        </div>
-
-      </nav>
+</nav>
 
       {/* ================= HERO ================= */}
 <section className="hero">
 
  
-
-    <div className="hero-left">
+<div className="hero-content">
+    
 
       <h1>
         Transform <br />

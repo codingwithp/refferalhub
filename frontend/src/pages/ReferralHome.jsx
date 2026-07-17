@@ -25,10 +25,10 @@ function ReferralHome() {
           {/* <a href="#cta">Join</a> */}
         </div>
 
-        <div className="nav-buttons">
+        {/* <div className="nav-buttons">
           <Link to="/login" className="login-btn">Log In</Link>
           <Link to="/register" className="register-btn">Join Now</Link>
-        </div>
+        </div> */}
       </nav>
 
       {/* ── HERO ── */}
@@ -51,7 +51,7 @@ function ReferralHome() {
           </p>
 
           <div className="hero-btns">
-            <Link to="/register" className="hero-btn-primary">
+            <Link to="/login" className="hero-btn-primary">
               Start Referring Now
               <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="white" strokeWidth="2.5" strokeLinecap="round">
                 <path d="M5 12h14M13 6l6 6-6 6" />
@@ -139,7 +139,7 @@ function ReferralHome() {
             their weight loss goals. Create your free account or log in.
           </p>
           <div className="cta-buttons">
-            <Link to="/register" className="cta-btn-primary">Create Free Account</Link>
+            {/* <Link to="/register" className="cta-btn-primary">Create Free Account</Link> */}
             <Link to="/login" className="cta-btn-ghost">Log In</Link>
           </div>
           <p className="cta-note">No credit card required · Free to join</p>
