@@ -270,9 +270,12 @@ exports.getClients = async (req, res) => {
 // GET ALL LEADS
 // ----------------------
 
+// ----------------------
+// GET ALL LEADS
+// ----------------------
+
 exports.getLeads = async (req, res) => {
   try {
-
     const leads = await Booking.find()
       .populate("clientId", "name email")
       .populate("coachId", "name coachCode");
@@ -280,32 +283,26 @@ exports.getLeads = async (req, res) => {
     res.json(leads);
 
   } catch (err) {
-
     res.status(500).json({
       message: err.message
     });
-
   }
-  const CareerApplication = require("../models/CareerApplication");
+};
+
+// ----------------------
+// GET ALL APPLICATIONS
+// ----------------------
 
 exports.getApplications = async (req, res) => {
+  try {
+    const applications = await CareerApplication.find()
+      .sort({ createdAt: -1 });
 
-    try{
+    res.json(applications);
 
-        const applications = await CareerApplication.find()
-        .sort({ createdAt: -1 });
-
-        res.json(applications);
-
-    }
-
-    catch(err){
-
-        res.status(500).json({
-            message:err.message
-        });
-
-    }
-
-}
+  } catch (err) {
+    res.status(500).json({
+      message: err.message
+    });
+  }
 };
