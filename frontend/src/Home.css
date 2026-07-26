@@ -60,7 +60,11 @@
   justify-content: center;
   flex-shrink: 0;
 }
-.nav-logo-text { font-size: 16px; color: var(--charcoal); }
+.nav-logo-text{
+  font-size:16px;
+  color:var(--charcoal);
+  white-space:nowrap;
+}
 .nav-logo-text strong { color: var(--orange); }
 
 .nav-links {
