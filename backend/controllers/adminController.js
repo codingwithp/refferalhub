@@ -2,6 +2,7 @@ const User = require("../models/User");
 const Booking = require("../models/Booking");
 const crypto = require("crypto");
 const bcrypt = require("bcryptjs");
+const CareerApplication = require("../models/CareerApplication");
 const {
   sendCoachInviteEmail,
 } = require("../services/emailService");
@@ -295,7 +296,7 @@ exports.getLeads = async (req, res) => {
 
 exports.getApplications = async (req, res) => {
   try {
-    const applications = await careerApplication.find()
+    const applications = await CareerApplication.find()
       .sort({ createdAt: -1 });
 
     res.json(applications);
