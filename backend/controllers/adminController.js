@@ -295,7 +295,7 @@ exports.getLeads = async (req, res) => {
 
 exports.getApplications = async (req, res) => {
   try {
-    const applications = await CareerApplication.find()
+    const applications = await careerApplication.find()
       .sort({ createdAt: -1 });
 
     res.json(applications);
