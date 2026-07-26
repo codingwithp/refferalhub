@@ -1,4 +1,5 @@
 const express=require("express");
+const CareerApplication = require("../models/CareerApplication");
 
 const router=express.Router();
 
