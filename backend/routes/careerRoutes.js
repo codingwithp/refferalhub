@@ -1,5 +1,5 @@
 const express=require("express");
-const CareerApplication = require("../models/CareerApplication");
+const CareerApplication = require("../models/careerApplication");
 
 const router=express.Router();
 

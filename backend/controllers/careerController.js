@@ -1,4 +1,4 @@
-const CareerApplication = require("../models/CareerApplication");
+const CareerApplication = require("../models/careerApplication");
 
 exports.applyCareer = async(req,res)=>{
 
