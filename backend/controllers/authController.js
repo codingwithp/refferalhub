@@ -19,9 +19,10 @@ const validatePhone = (phone) => {
 };
 
 // Example
-if (!validatePhone(form.phone)) {
-  alert("Please enter a valid 10-digit Indian phone number.");
-  return;
+if (!validatePhone(phone)) {
+  return res.status(400).json({
+    message: "Please enter a valid 10-digit Indian phone number."
+  });
 }
     // Email validation
     if (!validator.isEmail(email)) {
