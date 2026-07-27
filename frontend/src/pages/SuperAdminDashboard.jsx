@@ -221,7 +221,7 @@ Recent Coaches
 
 <th>Coach Code</th>
 
-<th>Status</th>
+{/* <th>Status</th> */}
 
 </tr>
 
@@ -239,7 +239,7 @@ Recent Coaches
 
 <td>{coach.coachCode}</td>
 
-<td>
+{/* <td>
 
 {coach.isActive?
 
@@ -259,7 +259,7 @@ Pending
 
 }
 
-</td>
+</td> */}
 
 </tr>
 
