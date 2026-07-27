@@ -86,10 +86,12 @@ await booking.save();
           booking.clientEmail
         );
 
-        await sendVoucherEmail(
-          booking.clientEmail,
-          booking.clientName
-        );
+       const result = await sendVoucherEmail(
+  booking.clientEmail,
+  booking.clientName
+);
+
+console.log("Resend Result:", result);
 
         booking.voucherSent = true;
 
