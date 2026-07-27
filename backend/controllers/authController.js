@@ -88,11 +88,22 @@ referralCode,
 
 
 });
-    res.status(201).json({
-      message: "Registration successful",
-      referralCode: user.referralCode,
-      user,
-    });
+    const token = jwt.sign(
+  {
+    id: user._id,
+    role: user.role,
+  },
+  process.env.JWT_SECRET,
+  {
+    expiresIn: "1d",
+  }
+);
+
+res.status(201).json({
+  message: "Registration successful",
+  token,
+  user,
+});
   } catch (err) {
     res.status(500).json({
       message: err.message,
