@@ -30,9 +30,7 @@ const resend = new Resend(process.env.RESEND_API_KEY);
 //     throw err;
 //   }
 // };
-const { Resend } = require("resend");
 
-const resend = new Resend(process.env.RESEND_API_KEY);
 
 // =========================
 // Voucher Email
