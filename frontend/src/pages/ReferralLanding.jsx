@@ -168,7 +168,7 @@ function ReferralLanding() {
 
             <div>
               <h2>Weight Loss Factory</h2>
-              <p>One Stop Solution For Your Health & Fitness</p>
+              
             </div>
           </div>
           </div>
