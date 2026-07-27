@@ -8,7 +8,7 @@ const resend = new Resend(process.env.RESEND_API_KEY);
 exports.sendVoucherEmail = async (email, name) => {
   try {
     const data = await resend.emails.send({
-      from: "Weight Loss Factory <noreply@yourdomain.com>",
+      from: "Weight Loss Factory <noreply@weightlossfactory.in>",
       to: email,
       subject: "Referral Reward Earned",
       html: `
@@ -37,14 +37,14 @@ exports.sendVoucherEmail = async (email, name) => {
 exports.sendCoachInviteEmail = async (email, name, inviteLink) => {
   try {
     const data = await resend.emails.send({
-      from: "Weight Loss Factory <noreply@yourdomain.com>",
+      from: "Weight Loss Factory <noreply@weightlossfactory.in>",
       to: email,
       subject: "You're Invited as a Coach",
 
       html: `
       <div style="font-family:Arial;padding:30px;max-width:600px;margin:auto">
 
-        <img src="https://YOURDOMAIN.com/logo.png"
+        <img src="https://weightlossfactory.in/logo.png"
              style="height:70px"/>
 
         <h2>Hello ${name},</h2>
