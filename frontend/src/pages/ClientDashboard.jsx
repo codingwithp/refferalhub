@@ -128,13 +128,14 @@ function ClientDashboard() {
             {copied ? "✓ Copied!" : "Copy Referral Link"}
           </button>
         </div>
-        <a
+       <a
   href="https://whatsapp.com/channel/0029Va5brUbKbYMPxtNJfO3G"
   target="_blank"
   rel="noopener noreferrer"
-  className="whatsapp-btn"
+  className="whatsapp-channel-btn"
 >
-  📢 Join Our WhatsApp Channel
+  <span className="wa-icon">📢</span>
+  Join Our WhatsApp Channel
 </a>
 
         {/* Referrals Table */}

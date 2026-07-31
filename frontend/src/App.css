@@ -915,4 +915,36 @@ border-radius:10px;
 cursor:pointer;
 font-weight:600;
 }
+.whatsapp-channel-btn{
+  width:100%;
+  max-width:380px;
+  margin:25px auto;
 
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:12px;
+
+  padding:16px 24px;
+
+  background:linear-gradient(135deg,#25D366,#128C7E);
+  color:white;
+
+  border-radius:14px;
+  text-decoration:none;
+  font-size:17px;
+  font-weight:700;
+
+  box-shadow:0 12px 25px rgba(37,211,102,0.25);
+
+  transition:all 0.3s ease;
+}
+
+.whatsapp-channel-btn:hover{
+  transform:translateY(-4px) scale(1.02);
+  box-shadow:0 18px 35px rgba(37,211,102,0.35);
+}
+
+.wa-icon{
+  font-size:22px;
+}
