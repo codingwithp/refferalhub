@@ -12,6 +12,9 @@ import CreateCoach from "./pages/CreateCoach";
 import Career from "./pages/Career";
 import CareerApply from "./pages/CarrerApply";
 import AdminCareer from "./pages/AdminCareer";
+import ManageCoaches from "./pages/ManageCoaches";
+import ManageClients from "./pages/ManageClients";
+import ManageLeads from "./pages/ManageLeads";
 function App() {
   return (
     <Routes>
@@ -49,7 +52,15 @@ element={<Register />}
         path="/admin/create-coach"
         element={<CreateCoach />}
       />
+      <Route path="/admin/coaches" element={<ManageCoaches />} />
+
+<Route path="/admin/clients" element={<ManageClients />} />
+
+<Route path="/admin/leads" element={<ManageLeads />} />
+
+<Route path="/admin/career" element={<AdminCareer />} />
     </Routes>
+
     
   );
 }

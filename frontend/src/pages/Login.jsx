@@ -89,6 +89,8 @@
 import { useState } from "react";
 import API from "../services/api";
 import { useNavigate, Link } from "react-router-dom";
+
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 const styles = `
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Open+Sans:wght@400;500;600&display=swap');
 
@@ -396,13 +398,56 @@ const styles = `
     font-size:22px;
   }
 }
+  .password-field{
+    position:relative;
+    width:100%;
+}
+
+.password-field input{
+    width:100%;
+    padding:15px 50px 15px 15px;
+    border:1px solid #ddd;
+    border-radius:10px;
+    font-size:16px;
+    outline:none;
+}
+
+.toggle-password{
+    position:absolute;
+    top:50%;
+    right:15px;
+    transform:translateY(-50%);
+
+    background:none;
+    border:none;
+    cursor:pointer;
+
+    color:#666;
+    font-size:18px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.toggle-password:hover{
+    color:#F26522;
+}
+
+.password-note{
+    display:block;
+    margin-top:8px;
+    color:#777;
+    font-size:13px;
+    line-height:1.5;
+}
 `;
 
 // Paste the SAME styles constant from Register.jsx here
 
 function Login() {
   const navigate = useNavigate();
-
+const [showPassword, setShowPassword] = useState(false);
   const [form, setForm] = useState({
     email: "",
     password: "",
@@ -553,22 +598,30 @@ function Login() {
               <label className="hl-label">
                 Password
               </label>
+<div className="password-field">
+  <input
+    type={showPassword ? "text" : "password"}
+    name="password"
+    placeholder="Enter Password"
+    value={form.password}
+    onChange={handleChange}
+    required
+  />
 
-              <div className="hl-input-wrap">
-                <span className="hl-input-icon">
-                  <LockIcon />
-                </span>
+  <button
+    type="button"
+    className="toggle-password"
+    onClick={() => setShowPassword(!showPassword)}
+  >
+    {showPassword ? <FaEyeSlash /> : <FaEye />}
+  </button>
+</div>
 
-                <input
-                  className="hl-input"
-                  type="password"
-                  name="password"
-                  placeholder="Enter your password"
-                  value={form.password}
-                  onChange={handleChange}
-                  required
-                />
-              </div>
+<small className="password-note">
+  Please note down your password or keep it safe for future login.
+</small>
+              
+             
             </div>
 
             <button

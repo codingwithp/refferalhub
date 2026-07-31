@@ -287,13 +287,14 @@ function ReferralLanding() {
     ))}
   </div>
 
-  <input
-    type="text"
-    className="hl-input"
-    value={form.leadGoal}
-    readOnly
-    placeholder="Select a goal above"
-  />
+<input
+  type="text"
+  className="hl-input"
+  value={form.leadGoal}
+  readOnly
+  required
+  placeholder="Select a goal above"
+/>
 </div>
 
           
@@ -316,6 +317,7 @@ function ReferralLanding() {
     )
   }
 >
+  
   📅 Book Consultation
 </button>
         </form>

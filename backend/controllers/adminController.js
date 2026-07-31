@@ -1,7 +1,7 @@
 const User = require("../models/User");
 const Booking = require("../models/Booking");
 const crypto = require("crypto");
-const bcrypt = require("bcryptjs");
+
 const CareerApplication = require("../models/careerApplication");
 const {
   sendCoachInviteEmail,
@@ -70,7 +70,36 @@ message:err.message
 }
 
 };
+// const bcrypt = require("bcryptjs");
 
+exports.updateCoach = async (req, res) => {
+  try {
+    const { name, email, phone, password } = req.body;
+
+    const updateData = {
+      name,
+      email,
+      phone,
+    };
+
+    // If admin enters a new password
+    if (password && password.trim() !== "") {
+      updateData.password = await bcrypt.hash(password, 10);
+    }
+
+    const coach = await User.findByIdAndUpdate(
+      req.params.id,
+      updateData,
+      { new: true }
+    );
+
+    res.json(coach);
+  } catch (err) {
+    res.status(500).json({
+      message: err.message,
+    });
+  }
+};
 
 // ----------------------
 // DASHBOARD STATS
@@ -264,7 +293,43 @@ exports.getClients = async (req, res) => {
   }
 };
 
+exports.updateClient = async (req, res) => {
+  try {
+    const { name, email, phone } = req.body;
 
+    const client = await User.findByIdAndUpdate(
+      req.params.id,
+      { name, email, phone },
+      { new: true }
+    );
+
+    res.json(client);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+};
+exports.deleteClient = async (req, res) => {
+  try {
+    await User.findByIdAndDelete(req.params.id);
+
+    res.json({
+      message: "Client deleted successfully",
+    });
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+};
+exports.deleteLead = async (req, res) => {
+  try {
+    await Booking.findByIdAndDelete(req.params.id);
+
+    res.json({
+      message: "Lead deleted successfully",
+    });
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+};
 
 
 // ----------------------

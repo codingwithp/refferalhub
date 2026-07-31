@@ -1,85 +1,12 @@
-// import { useState } from "react";
-// import API from "../services/api";
-// import { useNavigate } from "react-router-dom";
 
-// function Register() {
-//   const navigate = useNavigate();
-
-//   const [form, setForm] = useState({
-//     name: "",
-//     email: "",
-//     phone: "",
-//     password: "",
-//     role: "client",
-//   });
-
-//   const handleChange = (e) => {
-//     setForm({ ...form, [e.target.name]: e.target.value });
-//   };
-
-//   const handleSubmit = async (e) => {
-//     e.preventDefault();
-
-//     try {
-//       const res = await API.post("/auth/register", form);
-
-//       localStorage.setItem("token", res.data.token);
-
-//       alert("Registered Successfully");
-//       navigate("/");
-//     } catch (err) {
-//       alert(err.response.data.message);
-//     }
-//   };
-
-//   return (
-//     <div className="container">
-//       <h2>Herbalife Referral Hub</h2>
-
-//       <form onSubmit={handleSubmit} className="form">
-//         <input
-//           name="name"
-//           placeholder="Name"
-//           onChange={handleChange}
-//         />
-
-//         <input
-//           name="email"
-//           placeholder="Email"
-//           onChange={handleChange}
-//         />
-
-//         <input
-//           name="phone"
-//           placeholder="Phone"
-//           onChange={handleChange}
-//         />
-
-//         <input
-//           type="password"
-//           name="password"
-//           placeholder="Password"
-//           onChange={handleChange}
-//         />
-
-//         <select name="role" onChange={handleChange}>
-//           <option value="client">Client</option>
-//           <option value="coach">Coach</option>
-//         </select>
-
-//         <button type="submit">Register</button>
-//       </form>
-//     </div>
-//   );
-// }
-
-// export default Register;
 
 import { useState } from "react";
 import API from "../services/api";
 import { useNavigate } from "react-router-dom";
 import "../App.css";
 import { useParams } from "react-router-dom";
+
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 const styles = `
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Open+Sans:wght@400;500;600&display=swap');
 
@@ -386,6 +313,49 @@ const styles = `
   .hl-brand-name{
     font-size:22px;
   }
+    .password-field{
+    position:relative;
+    width:100%;
+}
+
+.password-field input{
+    width:100%;
+    padding:15px 50px 15px 15px;
+    border:1px solid #ddd;
+    border-radius:10px;
+    font-size:16px;
+    outline:none;
+}
+
+.toggle-password{
+    position:absolute;
+    top:50%;
+    right:15px;
+    transform:translateY(-50%);
+
+    background:none;
+    border:none;
+    cursor:pointer;
+
+    color:#666;
+    font-size:18px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.toggle-password:hover{
+    color:#F26522;
+}
+
+.password-note{
+    display:block;
+    margin-top:8px;
+    color:#777;
+    font-size:13px;
+    line-height:1.5;
+}
 }
 `;
 
@@ -395,6 +365,7 @@ function Register() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const { coachCode } = useParams();
+  const [showPassword, setShowPassword] = useState(false);
   const handleChange = (e) => setForm({ ...form, [e.target.name]: e.target.value });
 
   const handleSubmit = async (e) => {
@@ -549,13 +520,33 @@ navigate("/client-dashboard");
 
               
             </div>
-
-            <div className="hl-field">
+             <div className="hl-field">
               <label className="hl-label">Password</label>
-              <div className="hl-input-wrap">
-                <span className="hl-input-icon"><LockIcon /></span>
-                <input className="hl-input" name="password" type="password" placeholder="Create a strong password" onChange={handleChange} required />
-              </div>
+<div className="password-field">
+  <input
+  className="hl-input"
+    type={showPassword ? "text" : "password"}
+    name="password"
+    placeholder="Enter Password"
+    value={form.password}
+    onChange={handleChange}
+    required
+  />
+
+  <button
+    type="button"
+    className="toggle-password"
+    onClick={() => setShowPassword(!showPassword)}
+  >
+    {showPassword ? <FaEyeSlash /> : <FaEye />}
+  </button>
+</div>
+
+<small className="password-note">
+  Please note down your password or keep it safe for future login.
+</small>
+           
+              
             </div>
 
             <button className="hl-btn" type="submit" disabled={loading}>
