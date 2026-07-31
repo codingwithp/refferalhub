@@ -1,6 +1,7 @@
 const User = require("../models/User");
 const Booking = require("../models/Booking");
 const crypto = require("crypto");
+const bcrypt = require("bcryptjs");
 
 const CareerApplication = require("../models/careerApplication");
 const {

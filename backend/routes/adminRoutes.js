@@ -42,12 +42,12 @@ router.put(
 );
 
 // Activate coach
-router.put(
-  "/coach/:id/activate",
-  auth,
-  isSuperAdmin,
-  adminController.activateCoach
-);
+// router.put(
+//   "/coach/:id/activate",
+//   auth,
+//   isSuperAdmin,
+//   adminController.activateCoach
+// );
 
 // Delete coach
 router.delete(
