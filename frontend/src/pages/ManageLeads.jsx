@@ -45,15 +45,17 @@ function ManageLeads(){
         <table className="admin-table">
 
           <thead>
-            <tr>
-              <th>Lead Name</th>
-              <th>Phone</th>
-              <th>Email</th>
-              <th>Goal</th>
-              <th>Status</th>
-              <th>Actions</th>
-            </tr>
-          </thead>
+  <tr>
+    <th>Lead Name</th>
+    <th>Phone</th>
+    <th>Email</th>
+    <th>Goal</th>
+    <th>Client</th>
+    <th>Coach</th>
+    <th>Status</th>
+    <th>Actions</th>
+  </tr>
+</thead>
 
           <tbody>
             {leads.map((lead)=>(
@@ -63,17 +65,51 @@ function ManageLeads(){
                 <td>{lead.leadName}</td>
                 <td>{lead.leadPhone}</td>
                 <td>{lead.leadEmail}</td>
-                <td>{lead.leadGoal}</td>
-                <td>{lead.status}</td>
+                
+<td>{lead.leadGoal}</td>
 
-                <td>
-                  <button
-                    className="delete-btn"
-                    onClick={()=>deleteLead(lead._id)}
-                  >
-                    Delete
-                  </button>
-                </td>
+<td>
+  {lead.clientId ? (
+    <div className="coach-info">
+      <span className="coach-name">
+        👤 {lead.clientId.name}
+      </span>
+      {/* <small className="coach-code">
+        {lead.clientId.email}
+      </small> */}
+    </div>
+  ) : (
+    <span className="no-coach">No Client</span>
+  )}
+</td>
+
+<td>
+  {lead.coachId ? (
+    <div className="coach-info">
+      <span className="coach-name">
+        👨‍🏫 {lead.coachId.name}
+      </span>
+      {/* <small className="coach-code">
+        {lead.coachId.coachCode}
+      </small> */}
+    </div>
+  ) : (
+    <span className="no-coach">No Coach</span>
+  )}
+</td>
+
+<td>{lead.status}</td>
+
+<td>
+  <button
+    className="delete-btn"
+    onClick={() => deleteLead(lead._id)}
+  >
+    Delete
+  </button>
+</td>
+
+                
 
               </tr>
 

@@ -99,7 +99,21 @@ function ManageClients(){
                 <td>{client.name}</td>
                 <td>{client.email}</td>
                 <td>{client.phone}</td>
-                <td>{client.coach?.name || "-"}</td>
+                <td>
+  {client.coach ? (
+    <div className="coach-info">
+      <span className="coach-name">
+        👨‍🏫 {client.coach.name}
+      </span>
+
+      {/* <small className="coach-code">
+        {client.coach.coachCode}
+      </small> */}
+    </div>
+  ) : (
+    <span className="no-coach">Not Assigned</span>
+  )}
+</td>
 
                 <td className="action-buttons">
 
