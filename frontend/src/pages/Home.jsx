@@ -42,12 +42,12 @@ function Home() {
   </div>
 
   {/* Hamburger */}
-  <div
-    className="hamburger"
-    onClick={() => setMenuOpen(!menuOpen)}
-  >
-    ☰
-  </div>
+  <button
+  className="hamburger"
+  onClick={() => setMenuOpen(!menuOpen)}
+>
+  ☰
+</button>
 
   <div className={`nav-links ${menuOpen ? "active" : ""}`}>
 
